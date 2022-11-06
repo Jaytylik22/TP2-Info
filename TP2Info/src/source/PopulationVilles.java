@@ -11,9 +11,8 @@ public class PopulationVilles {
 	//Constructeurs
 	public PopulationVilles(Configuration config){
 		for(int i = 0; i < config.getNb_villes(); i++) {
-			tblVille[i].numero = i;
-			tblVille[i].posX = rand.nextDouble(config.getMax_x());
-			tblVille[i].posY = rand.nextDouble(config.getMax_y());
+			
+			tblVille[i] = new Ville(i, rand.nextDouble(config.getMax_x()), rand.nextDouble(config.getMax_y()));
 		}
 		
 	}
