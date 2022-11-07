@@ -1,6 +1,13 @@
 package source;
 
+/**
+ * 
+ * @author Jerome
+ *
+ */
 public class Configuration {
+	
+	//Attributs de la classe Configuration
 	public double pourcentage_mutation;
 	public double pourcentage_retrait;
 	
@@ -18,6 +25,8 @@ public class Configuration {
 	public int nb_cartes_max;
 	
 	
+	//Initialise tous les attributs à leur valeur constante associée du module
+	//Constantes
 	public Configuration() {
 		
 		pourcentage_mutation = Constantes.POURCENTAGE_MUTATION;
@@ -37,6 +46,7 @@ public class Configuration {
 		nb_cartes_max = Constantes.NB_CARTES_MAX;
 	}
 	
+	//Accesseur Get et Set pour tout les attributs
 	public double getPourcentage_mutation() {
 		return pourcentage_mutation;
 	}
@@ -124,7 +134,7 @@ public class Configuration {
 	public void setNb_cartes_max(int set) {
 		nb_cartes_max = set;
 	}
-	
+	//fin des accesseurs
 	
 	
 }

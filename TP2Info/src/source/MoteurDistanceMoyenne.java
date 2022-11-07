@@ -63,7 +63,7 @@ public class MoteurDistanceMoyenne {
 	 * 
 	 * @return distance moyenne
 	 */
-	public double getDistanceMoyenne(Liste listeLiens, boolean afficher){
+	public double getDistanceMoyenne(ArrayList<Lien> listeLiens, boolean afficher){
 		 
 		 /*
 		  * Stratégie : Calcule la distance moyenne pour la liste de liens reçue et 
@@ -83,7 +83,7 @@ public class MoteurDistanceMoyenne {
 
 		 // À partir de la population de villes
 		// pour chaque ville...
-		for(int i=0;i<popVilles.getNbVille();i++){
+		for(int i=0;i<popVilles.getNbVilles();i++){
 
 			ArrayList<Noeud> arbre = construireArbre(listeLiens, i, afficher);
 
@@ -93,8 +93,8 @@ public class MoteurDistanceMoyenne {
 				Noeud ceNoeud = arbre.get(j);
 				
 				// Pour la lisibilité du code.
-				int indice = ceNoeud.getSource().getIndex();
-				distances[i][indice] = ceNoeud.getdistanceDeTete();
+				int indice = ceNoeud.getSource().getNumero();
+				distances[i][indice] = ceNoeud.getDistanceDeTete();
 			}
 
 		}
@@ -126,15 +126,27 @@ public class MoteurDistanceMoyenne {
 	 * @param i, Indice de la ville, pour laquelle on développe l'arbre.
 	 * @return La liste de noeuds, contenant l'arbre.
 	 */
-	private ArrayList<Noeud> construireArbre(Liste listeLiens, 
+	private ArrayList<Noeud> construireArbre(ArrayList<Lien> listeLiens, 
 			                                  int indice,
 			                                  boolean afficher){
 
 		// Mettre vos deux liste ici (arbre et liste de sources).
-
-		
-		
-        // Compléter ici
+		//Initialiser les 2 listes vides(arbre et liste de sources)
+		ArrayList<Noeud> arbre=new ArrayList<Noeud>();
+		ArrayList<Ville> listeSources=new ArrayList<Ville>();  
+				
+		//Créer un Noeud correspondant a la ville dont l'indice est recu en parametre et ajouter ce noeud a l'arbre ainsi qu'a la liste des sources
+		Noeud noeud = new Noeud(popVilles.tblVille[indice]);
+				
+		//Parcourir les noeuds de l'arbre et les développer
+		for(int i = 0; i < arbre.size(); i++) {
+			developperNoeud(arbre, listeSources, listeLiens, indice);
+		}
+				
+		//Afficher l'arbre si le parametre booléen == true;
+		if( afficher == true) {
+			afficherArbre(arbre);
+		}
 
 		return arbre;
 
@@ -152,12 +164,35 @@ public class MoteurDistanceMoyenne {
 	 */
 	private void developperNoeud(ArrayList<Noeud> arbre,
 			                    ArrayList<Ville> listeSource,
-			                    Liste listeLiens,
+			                    ArrayList<Lien> listeLiens,
 			                    int noeudADevelopper){
 
-
         // Compléter ici
-
+		
+		//Obtenir le noeud courant associé a l'indice dans l'arbre
+		Noeud noeud = arbre.get(noeudADevelopper);
+		
+		//Obtenir la ville qui est dans ce noeud
+		Ville villeSource = noeud.getSource();
+		
+		//Tant qu'il y a des liens de la liste de liens qui sont non traités
+		for(int i = 0; i < listeLiens.size(); i++) {
+		
+			//Obtenir le lien de la liste de liens a la position courante
+			Lien lienTemp = listeLiens.get(i);
+			//Si la ville courante est membre du lien
+			if(lienTemp.estMembre(villeSource) == true){
+				
+				//Si la ville destination ne fait pas partie de la liste des sources
+				if(listeSource.contains(lienTemp.getDest(villeSource)) == true) {
+					
+					//Ajouter un noeud correspondant a la destination dans l'arbre et dans la liste de sources
+					Noeud noeudDestination = new Noeud(lienTemp.getDest(villeSource));
+					arbre.add(noeudDestination);
+					listeSource.add(lienTemp.getDest(villeSource));
+				}
+			}
+		}
 	}
 
 
@@ -229,5 +264,4 @@ public class MoteurDistanceMoyenne {
 		}
 
 	}
-
 }

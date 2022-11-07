@@ -2,14 +2,16 @@ package source;
 
 import java.lang.Math;
 
+/**
+ * 
+ * @author Jerome
+ *
+ */
 public class Ville {
 
-	
 	public int numero;
 	public double posX;
 	public double posY;
-	
-	
 	
 	//Constructeurs
 	public Ville(){
@@ -29,9 +31,10 @@ public class Ville {
 		posX = ville.posX;
 		posY = ville.posY;
 	}
+	//Fin des constructeurs
 	
 	
-	//accesseurs
+	//accesseurs de Numero
 	public int getNumero() {
 			
 			return numero;
@@ -40,17 +43,20 @@ public class Ville {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+	Fin des accesseurs
 	
 	
-	//toString()
+	//Retourne une chaîne de caractères avec les données de la ville sous forme
+	//compacte 
 	public String toString() {
 		return "Ville# " + numero + " (" + posX + ", " + posY + ")";
 	}
 	
 	
-	//distanceAvec
+	//calcule la distance avec la ville courante (this) et une autre ville
 	public double distanceAvec(Ville ville) {
-		 return Math.sqrt(Math.pow(ville.posX - this.posX, 2) + (Math.pow(ville.posY - this.posY, 2)));
+		 return Math.sqrt(Math.pow(ville.posX - this.posX, 2) + (Math.pow
+				 	(ville.posY - this.posY, 2)));
 	}
 	
 }

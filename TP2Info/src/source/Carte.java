@@ -3,9 +3,16 @@ package source;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 
+ * @author Jerome
+ *
+ */
 public class Carte{
 	
-	List<Lien> list=new ArrayList<Lien>();  
+	//
+	List<Lien> listeLien=new ArrayList<Lien>();  
 	int score;
 	MoteurDistanceMoyenne moteurDistanceMoyenne = null;
 	
@@ -19,7 +26,7 @@ public class Carte{
 	
 	public int getNbLiens() {
 		
-		return list.size();
+		return listeLien.size();
 	}
 	
 	public int getScore() {
@@ -34,7 +41,7 @@ public class Carte{
 	}
 	
 	public String toString() {
-		
+		return "";
 	}
 	
 	public List<Lien> obtientFraction(Boolean duDebut, int indexCoupe){
@@ -51,5 +58,6 @@ public class Carte{
 		return listTemp;
 	}
 	
+	//Mutateur a faire
 	
 }

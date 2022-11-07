@@ -3,19 +3,24 @@ package source;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Jerome
+ *
+ */
 public class Noeud{
 	
 	Ville villeSource;
-	List<Ville> listeVille=new ArrayList<Ville>();  
+	List<Ville> listeVilleConnecter=new ArrayList<Ville>();  
 	int distanceDeTete;
 	
-	
-	public Noeud() {
-		
+	public Noeud(Ville villeSource/*, List<Ville> listeVilleConnecter*/) {
+		this.villeSource = villeSource;
+		//this.listeVilleConnecter = listeVilleConnecter;
 	}
 	
 	public Ville getSource() {
-		return listeVille.get(0);
+		return listeVilleConnecter.get(0);
 	}
 	
 	public int getDistanceDeTete() {
@@ -23,11 +28,11 @@ public class Noeud{
 	}
 	
 	public int getNiveau() {
-		
+		return 0;
 	}
 	
 	public String toString() {
-		
+		return "";
 	}
 	
 	

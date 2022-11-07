@@ -1,5 +1,10 @@
 package source;
 
+/**
+ * 
+ * @author Jerome
+ *
+ */
 public class Lien {
 
 	
@@ -23,10 +28,12 @@ public class Lien {
 		villeSource = lien.villeSource;
 		villeDestination = lien.villeDestination;
 	}
+	//Fin des constructeurs
 	
 	
 	//Accesseurs
-	//estMembre()
+	//Retourne true, si la ville reçue en paramètre est l’une des deux villes
+	//connectées; false, sinon.
 	public boolean estMembre(Ville ville) {
 		if(ville == villeDestination) {
 			return true;
@@ -40,17 +47,21 @@ public class Lien {
 		
 	}
 	
-	//getDistance()
+	//Retourne la distance entre les deux villes du lien
 	public double getDistance() {
 		return villeSource.distanceAvec(villeDestination);
 	}
 	
-	//toString()
+	//Retourne une chaîne de caractères qui représente les deux villes
+	//connectées sur une seule ligne.
 	public String toString() {
-		return villeSource.toString() + "------" + this.getDistance() + "------" + villeDestination.toString();
+		return villeSource.toString() + "------" + this.getDistance()
+		+ "------" + villeDestination.toString();
 	}
 	
-	//getDest()
+	//Retourne une référence à la ville qui complémente la ville reçue en
+	//paramètre. Dans le cas où la ville reçue n’est pas membre, la méthode
+	//retourne null.
 	public Ville getDest(Ville ville) {
 		if(ville == villeDestination) {
 			return villeSource;
@@ -64,14 +75,16 @@ public class Lien {
 	}
 	
 	
-	//clone()
+	//Retourne une copie du lien
 	public Object clone() throws CloneNotSupportedException{
 		
 		return super.clone();
 	}
+	//Fin des accesseurs
 	
 	//Mutateurs
-	//mute()
+	//sert à modifier le lien en lui assignant une nouvelle ville selon
+	//la position 
 	public boolean mute(Ville nouvelleVille, int position) {
 		if(estMembre(nouvelleVille) == false) {
 			if(position == 0) {
