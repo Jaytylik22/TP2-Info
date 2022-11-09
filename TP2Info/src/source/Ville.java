@@ -43,7 +43,7 @@ public class Ville {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	Fin des accesseurs
+	//Fin des accesseurs
 	
 	
 	//Retourne une chaîne de caractères avec les données de la ville sous forme

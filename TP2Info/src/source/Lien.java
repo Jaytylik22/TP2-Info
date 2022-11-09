@@ -76,9 +76,10 @@ public class Lien {
 	
 	
 	//Retourne une copie du lien
-	public Object clone() throws CloneNotSupportedException{
+	public Object clone(){
 		
-		return super.clone();
+		Lien copyLien = new Lien(this.villeSource, this.villeDestination);
+		return copyLien;
 	}
 	//Fin des accesseurs
 	
