@@ -3,13 +3,16 @@ package source;
 import java.util.List;
 
 /**
- * Cette classe Implemente le moteur de gestions de la population de cartes candidates
+ * Cette classe Implemente le moteur de gestions de la population de cartes 
+ * candidates
 
  * 
  * Liste des méthodes publiques: 
  *     - MoteurCartes, constructeur par paramètre
- *     - reduitLaPopulation, opération qui réduit la population à NB_CARTES_BASES
- *     - elargieLaPopulation, opération qui elargie la population à NB_CARTES_MAX
+ *     - reduitLaPopulation, opération qui réduit la population à NB_CARTES_
+ *     BASES
+ *     - elargieLaPopulation, opération qui elargie la population à NB_CARTES_
+ *     MAX
  *     - evalueLesScores, calcul les scores des cartes
  *     - afficheMeilleurSolution, affiche la meilleur solution
  *     - afficheMeilleurScore, affiche le meilleur score
@@ -43,12 +46,17 @@ public class MoteurCartes {
 		
 		this.popVilles = popVilles;
 		this.config = config;
+		
+		moteurDistanceMoyenne = new MoteurDistanceMoyenne(popVilles);
+		cartes = new Vector<Carte>(config.getNb_cartes_base());
 	}
 	
 
 	/**
-	 * reduit la population de carte en ne gardant que les CONFIGURATION.NB_CARTES_BASES
-	 * ayant le plus bas score (minimization). Cette méthode opère sur les champs de la classe
+	 * reduit la population de carte en ne gardant que les CONFIGURATION.NB_
+	 * CARTES_BASES
+	 * ayant le plus bas score (minimization). Cette méthode opère sur les 
+	 * champs de la classe
 	 */
 	public void reduitLaPopulation(){
 	
@@ -59,7 +67,8 @@ public class MoteurCartes {
 		//Ajouter-y la première carte de la liste actuelle
 		bestCartes.add(cartes.firstElement());
 		
-		//Boucler tant qu'il reste des cartes à traiter dans le vecteur de cartes.
+		//Boucler tant qu'il reste des cartes à traiter dans le vecteur de 
+		//cartes.
 		for(int i = 1; i < cartes.capacity(); i++) {
 			
 			//Obtenir la prochaine carte.
@@ -76,7 +85,8 @@ public class MoteurCartes {
 			//Sinon trouver la position d’insertion et l’ajouter.
 			else {
 				for(int j = 0; j < cartes.capacity(); j++) {
-					if(bestCartes.elementAt(j).score < cartes.elementAt(i).score){
+					if(bestCartes.elementAt(j).score < cartes.elementAt(i).
+							score){
 						bestCartes.add(j, carteTemp);
 					}
 				}
@@ -95,13 +105,14 @@ public class MoteurCartes {
 	}
 
 	/**
-	 * elargie la population de carte en générant de nouvelles cartes qui sont des mix de cartes
+	 * elargie la population de carte en générant de nouvelles cartes qui sont
+	 *  des mix de cartes
 	 * existantes. Cette méthode opère sur les champs de la classe.
 	 */
 	public void elargieLaPopulation(){
 
-		// elargie la population en générant de nouveaux individus, qui combinent les gênes
-		// des parents.
+		// elargie la population en générant de nouveaux individus, qui 
+		//combinent les gênes des parents.
 		
 		// calcul la somme des scores de tous les parents
 		double sommeScore = 0.0;
@@ -121,19 +132,24 @@ public class MoteurCartes {
 			List<Lien> section2 = obtientUneCoupe(sommeScore);
 			
 			// assemble et ajoute le nouvel individu
-			cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, config));
+			cartes.add(new Carte(moteurDistanceMoyenne, section1, section2, 
+					config));
 		}
 	
 	}
 
 	/**
-	 * Obtient une section de carte selectionné au hasard parmis la liste de cartes
+	 * Obtient une section de carte selectionné au hasard parmis la liste de 
+	 * cartes
 	 * en proportion de leur score.
 	 * 
-	 * NOTE: la technique employé est de donner plus de poids aux cartes de bases ayant les plus mauvais
-	 * 		 score. Cette approche augmente le mélange des éléments et aide à sortir des minimum locaux
+	 * NOTE: la technique employé est de donner plus de poids aux cartes de 
+	 * bases ayant les plus mauvais
+	 * 		 score. Cette approche augmente le mélange des éléments et aide à 
+	 * sortir des minimum locaux
 	 * 
-	 * NOTE: la technique tend également à favoriser les solutions courtes en applicant un retrait de liens
+	 * NOTE: la technique tend également à favoriser les solutions courtes en 
+	 * applicant un retrait de liens
 	 * 
 	 * @param sommeScore somme des scores de la population de cartes
 	 * @return une section de carte (ListeDChainee)
@@ -187,7 +203,7 @@ public class MoteurCartes {
 	public void evalueLesScores(){
 
 		for(int i = 0; i < cartes.size(); i++) {
-			cartes.get(i).evalueScore(null);
+			cartes.get(i).evalueScore();
 		}
 	}
 	
@@ -250,11 +266,14 @@ public class MoteurCartes {
 
 			// selectionne 2 villes différentes au hasard
 			for(int j=0;j<popVilles.getNbVilles()/2;j++){
-				Ville villeA = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
-				Ville villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
+				Ville villeA = popVilles.getVille(rand.nextInt(popVilles.
+						getNbVilles()));
+				Ville villeB = popVilles.getVille(rand.nextInt(popVilles.
+						getNbVilles()));
 
 				while(villeA == villeB){
-					villeB = popVilles.getVille(rand.nextInt(popVilles.getNbVilles()));
+					villeB = popVilles.getVille(rand.nextInt(popVilles.
+							getNbVilles()));
 				}
 
 				temp.ajouterLien(new Lien(villeA,villeB));

@@ -12,7 +12,7 @@ public class Lien {
 	public Ville villeDestination;
 	
 	
-	//Constructeurs
+	//Les 3 Constructeurs
 	public Lien(){
 		
 	}
@@ -44,7 +44,6 @@ public class Lien {
 		else {
 			return false;
 		}
-		
 	}
 	
 	//Retourne la distance entre les deux villes du lien
@@ -76,7 +75,7 @@ public class Lien {
 	
 	
 	//Retourne une copie du lien
-	public Object clone(){
+	public Lien clone(){
 		
 		Lien copyLien = new Lien(this.villeSource, this.villeDestination);
 		return copyLien;
@@ -101,5 +100,5 @@ public class Lien {
 			return false;
 		}
 	}
-	
+	//Fin des mutateurs
 }

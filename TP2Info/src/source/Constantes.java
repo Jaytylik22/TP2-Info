@@ -17,7 +17,8 @@ public class Constantes {
 	public static final double MAX_X = 3000.0;
 	public static final double MAX_Y = MAX_X;
 	
-	public static final double PENALITE_LONGUEUR = (double)(2000.0/MAX_X); //20.0
+	public static final double PENALITE_LONGUEUR = (double)(2000.0/MAX_X); 
+	//20.0
 	public static final double PENALITE_DISTANCE = (double)(100.0/MAX_X); //1
 	public static final int PENALITE_DECONNECTE = 1000;
 	

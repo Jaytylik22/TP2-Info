@@ -32,7 +32,7 @@ public class ProgrammePrincipal{
     public static void main(String[] args){
     	
     	
-    	Configuration config = null;
+    	Configuration config = new Configuration();
         // Crée une population de villes.
     	PopulationVilles popVilles =
     			new PopulationVilles(config);

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Cette classe implémente le moteur de calcul de distance moyenne entre 2 villes. 
+ * Cette classe implémente le moteur de calcul de distance moyenne entre 2
+ *  villes. 
 *  Elle est un singleton dont la référence est partagée par toutes les cartes.
  *
  * L'algorithme utilisé consiste à construire, pour chaque ville, un arbre à
@@ -63,10 +64,12 @@ public class MoteurDistanceMoyenne {
 	 * 
 	 * @return distance moyenne
 	 */
-	public double getDistanceMoyenne(ArrayList<Lien> listeLiens, boolean afficher){
+	public double getDistanceMoyenne(ArrayList<Lien> listeLiens, boolean 
+			afficher){
 		 
 		 /*
-		  * Stratégie : Calcule la distance moyenne pour la liste de liens reçue et 
+		  * Stratégie : Calcule la distance moyenne pour la liste de liens 
+		  * reçue et 
 		  * la retourne.
 		  * 
 		  * Un arbre est construit ainsi qu'une matrice de sitance et  le 
@@ -79,7 +82,8 @@ public class MoteurDistanceMoyenne {
 		 
 		 // Initialise la matrice de distances.
 		 double[][] distances = 
-				 	 new double[popVilles.getNbVilles()][popVilles.getNbVilles()];
+				 	 new double[popVilles.getNbVilles()][popVilles.
+				 	                                     getNbVilles()];
 
 		 // À partir de la population de villes
 		// pour chaque ville...
@@ -135,7 +139,9 @@ public class MoteurDistanceMoyenne {
 		ArrayList<Noeud> arbre=new ArrayList<Noeud>();
 		ArrayList<Ville> listeSources=new ArrayList<Ville>();  
 				
-		//Créer un Noeud correspondant a la ville dont l'indice est recu en parametre et ajouter ce noeud a l'arbre ainsi qu'a la liste des sources
+		//Créer un Noeud correspondant a la ville dont l'indice est recu en
+		//parametre et ajouter ce noeud a l'arbre ainsi qu'a la liste des 
+		//sources
 		Noeud noeud = new Noeud(popVilles.tblVille[indice]);
 				
 		//Parcourir les noeuds de l'arbre et les développer
@@ -183,11 +189,14 @@ public class MoteurDistanceMoyenne {
 			//Si la ville courante est membre du lien
 			if(lienTemp.estMembre(villeSource) == true){
 				
-				//Si la ville destination ne fait pas partie de la liste des sources
-				if(listeSource.contains(lienTemp.getDest(villeSource)) == true) {
+				//Si la ville destination ne fait pas partie de la liste
+				//des sources
+				if(listeSource.contains(lienTemp.getDest(villeSource)) == true){
 					
-					//Ajouter un noeud correspondant a la destination dans l'arbre et dans la liste de sources
-					Noeud noeudDestination = new Noeud(lienTemp.getDest(villeSource));
+					//Ajouter un noeud correspondant a la destination dans 
+					//l'arbre et dans la liste de sources
+					Noeud noeudDestination = new Noeud(lienTemp.getDest
+							(villeSource));
 					arbre.add(noeudDestination);
 					listeSource.add(lienTemp.getDest(villeSource));
 				}

@@ -11,38 +11,55 @@ import java.util.List;
  */
 public class Carte{
 	
-	//
-	List<Lien> listeLien=new ArrayList<Lien>();  
-	List<Lien> listeLien2=new ArrayList<Lien>(); 
+	
+	//Variables de la classe
+	List<Lien> listeLien=new ArrayList<Lien>();
 	double score;
 	MoteurDistanceMoyenne moteurDistanceMoyenne = null;
 	Configuration config = new Configuration();
 	
-	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, Configuration config) {
+	//Débuts des constructeurs
+	/*Constructeur par paramètre, minimaliste. Reçoit et copie le paramètre
+	 * dans l’attribut correspondant. Le constructeur initialise aussi la
+	 *  liste vide.
+	 */
+	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, 
+				 Configuration config) {
 		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
 		this.config = config;
 		
 	}
 	
-	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, List<Lien> section1, List<Lien> section2, Configuration config) {
+	/*Constructeur par paramètres. Retient la référence du
+	 * moteurDistanceMoyenne. Cette définition s’attarde aussi à l’attribution
+	 * d’un contenu de la liste. Cela se fait en prenant les deux listes 
+	 * reçues et en les assemblant en une seule.
+	 */
+	public Carte(MoteurDistanceMoyenne moteurDistanceMoyenne, List<Lien>
+				 section1, List<Lien> section2, Configuration config) {
 		
 		this.moteurDistanceMoyenne = moteurDistanceMoyenne;
 		this.listeLien = section1;
-		this.listeLien2 = section2;
 		this.config = config;
 	}
 	
+	//Constructeur par copie
 	public Carte(Carte cartes) {
 		this.listeLien = cartes.listeLien;
 		this.score = cartes.score;
 		this.moteurDistanceMoyenne = cartes.moteurDistanceMoyenne;
 	}
+	//Fin des constructeurs
 	
+	
+	//Début des accesseurs
+	//Retourne le nombre de liens de la carte.
 	public int getNbLiens() {
 		
 		return listeLien.size();
 	}
 	
+	//Retourne le score.
 	public double getScore() {
 		
 		return score;
@@ -60,33 +77,52 @@ public class Carte{
 		return sommeLongueur;
 	}
 	
-	public void evalueScore(Boolean afficher) {
+	/*Il s’agit de calculer le score obtenu par la multiplication de la 
+	 * distance obtenue du moteurDistanceMoyenne par la pénalité de distance
+	 *  + la somme des longueurs multipliée par la pénalité de longueur + la
+	 *   pénalité déconnecte.
+	 */
+	public void evalueScore() {
 		
 		ArrayList<Lien> listeLienCopy = new ArrayList<Lien>(listeLien);
-		double distanceObtenue = moteurDistanceMoyenne.getDistanceMoyenne(listeLienCopy, false);
+		double distanceObtenue = moteurDistanceMoyenne.getDistanceMoyenne(
+				listeLienCopy, false);
 		double sommeLongueur = obtenirSommeLongueurs();
-		score = distanceObtenue * config.penalite_distance + sommeLongueur * config.penalite_longueur + config.penalite_deconnecte;
+		score = distanceObtenue * config.penalite_distance + sommeLongueur * 
+				config.penalite_longueur + config.penalite_deconnecte;
 	}
 	
+	/*Créer et retourne une chaîne de caractères enfilant tous les liens de 
+	 * la carte, à raison d’un lien par ligne. Après avoir enfilé tous les 
+	 * liens, ajouter le score.
+	 */
 	public String toString() {
 		return "";
 	}
 	
+	/*Cette méthode retourne la copie d’une fraction de la liste de liens.
+	 *  Il y a deux comportements possibles: 
+	 */
 	public List<Lien> obtientFraction(Boolean duDebut, int indexCoupe){
 		
 		List<Lien> listTemp=new ArrayList<Lien>();  
 		
 		if(duDebut == true) {
-			
+			for(int i = 0; i <= indexCoupe; i++) {
+				listTemp.add(listeLien.get(i));
+			}
 		}
 		else {
-			
+			for(int i = listeLien.size(); i >= indexCoupe; i--) {
+				listTemp.add(listeLien.get(i));
+			}
 		}
 		
 		return listTemp;
 	}
+	//Fin des acccesseurs
 	
-	//Mutateur
+	//Début des Mutateurs
 	//Enlève le lien l’indice donné.
 	public List<Lien> enleverLien(int indice){
 		listeLien.remove(indice);
@@ -97,7 +133,6 @@ public class Carte{
 	public void ajouterLien(Lien ceLien) {
 		listeLien.add(ceLien);
 	}
-	
 	//Fin des mutateurs
 	
 }
