@@ -32,12 +32,14 @@ public class Noeud{
 	
 	//obtient le niveau de l'arbre ou se trouve le nœud.
 	public int getNiveau() {
-		return 0;
+		return distanceDeTete;
 	}
 	
 	//obtient une représentation en chaine de caractères du nœud.
 	public String toString() {
-		return "";
+		return villeSource.toString() + "------" + distanceDeTete;
+		
+		
 	}
 	
 	

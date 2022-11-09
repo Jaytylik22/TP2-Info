@@ -79,7 +79,7 @@ public class Carte{
 	
 	/*Il s’agit de calculer le score obtenu par la multiplication de la 
 	 * distance obtenue du moteurDistanceMoyenne par la pénalité de distance
-	 *  + la somme des longueurs multipliée par la pénalité de longueur + la
+	 *  + la somme des longueurs multipliée par la péna--lité de longueur + la
 	 *   pénalité déconnecte.
 	 */
 	public void evalueScore() {
@@ -97,7 +97,7 @@ public class Carte{
 	 * liens, ajouter le score.
 	 */
 	public String toString() {
-		return "";
+		return listeLien.toString() + "-----Score : " + score;
 	}
 	
 	/*Cette méthode retourne la copie d’une fraction de la liste de liens.
